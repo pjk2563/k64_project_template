@@ -33,17 +33,29 @@
 4. (Optional) In the event that flashing fails, you may need to add some udev rules:
     1. As root, create three files under `/etc/udev/rules.d` with the following names and contents:
         - `45-mbed_debugger.rules`
-            ~~~SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", MODE="0660", GROUP="plugdev"~~~
+            ```
+            SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", MODE="0660", GROUP="plugdev"
+            ```
         - `50-tty_cmsis.rules`
-            ~~~KERNEL=="ttyACM[0 ... 9]" SYMLINK+="%k" GROUP="plugdev" MODE="0660"~~~
+            ```
+            KERNEL=="ttyACM[0 ... 9]" SYMLINK+="%k" GROUP="plugdev" MODE="0660"
+            ```
         - `99-hidraw-permissions.rules`
-            ~~~KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev"~~~
+            ```
+            KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev" 
+            ```
     2. Create the plugdev group, if it does not exist:
-        ~~~sudo getent group plugdev || sudo groupadd plugdev~~~
+        ```
+        sudo getent group plugdev || sudo groupadd plugdev
+        ```
     3. Add your user to the plugdev group:
-        ~~~sudo usermod -aG plugdev $USER~~~
+        ```
+        sudo usermod -aG plugdev $USER
+        ```
     4. And finally, reload the udev rules:
-        ~~~sudo udevadm control --reload-rules~~~
+        ```
+        sudo udevadm control --reload-rules
+        ```
 
 
 ## Building Your Project
