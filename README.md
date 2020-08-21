@@ -24,7 +24,7 @@
         - `arm-none-eabi-newlib` (optional, for libc functions)
         - `arm-none-eabi-gdb` (recommended, for debugging)
         - `openocd` (recommended, for flashing)
-    2. For debian derivatives:
+    2. For Debian derivatives:
         - `gcc-arm-none-eabi`
         - `binutils-arm-none-eabi`
         - `libnewlib-arm-none-eabi`
@@ -55,6 +55,7 @@
     4. And finally, reload the udev rules:
         ```
         sudo udevadm control --reload-rules
+        sudo udevadm trigger
         ```
 
 
